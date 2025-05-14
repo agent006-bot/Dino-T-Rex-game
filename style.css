@@ -1,28 +1,49 @@
+/* Общий контейнер для игры */
 .game {
-    width: 600px;
+    width: 900px;
     height: 200px;
     border-bottom: 1px solid #000;
-    margin: auto;
+    margin: 250px auto; /* добавил вертикальный отступ для красоты */
+    position: relative; /* чтобы позиционировать внутри элементы */
+    background-color: #f0f0f0; /* светлый фон для лучшей видимости */
+    overflow: hidden; /* скрывать выходящие за границы элементы */
 }
+
+/* Стиль для счета */
 #score {
     position: absolute;
     top: 10px;
     right: 10px;
     font-size: 1.2em;
-    font-family: sans-serif;
+    font-family: Arial, sans-serif;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 4px 8px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    z-index: 10;
 }
-div{
+
+/* Общий стиль для всех div элементов */
+div {
     display: block;
     unicode-bidi: isolate;
 }
+
+/* Стиль для динозавра */
 #dino {
     width: 50px;
     height: 50px;
-    background-image: url(dino.png.png);
-    background-size: 50px 50px;
-    position: relative;
-    top: 150px;
+    background-image: url('dino.png.png'); /* убедитесь, что путь правильный */
+    background-size: cover;
+    position: absolute; /* изменил на absolute для точного позиционирования */
+    bottom: 0; /* расположить у низа контейнера */
+    left: 50px; /* начальная позиция по горизонтали */
+    z-index: 5;
+    cursor: pointer; /* курсор при наведении */
+    transition: transform 0.2s; /* плавное изменение, если нужно */
 }
+
+/* Стиль для кактуса */
 #cactus {
     width: 20px;
     height: 50px;
@@ -33,6 +54,8 @@ div{
     left: 580PX;
     animation: cactusMov 1s infinite linear;
 }
+
+/* Анимация движения кактуса */
 @keyframes cactusMov {
     0% {
         left: 580px;
@@ -42,17 +65,23 @@ div{
     }
 }
 
+/* Анимация прыжка для динозавра */
 .jump {
     animation: jump 0.3s linear;
 }
 
+/* Ключевые кадры прыжка */
 @keyframes jump {
     0% {
-        top: 150px;
+        bottom: 0;
     }
     50% {
-        top: 50px;
-    }    
+        bottom: 100px; /* верхняя точка прыжка */
+    }
+    100% {
+        bottom: 0;
+    }
+} 
     100% {
         top: 150px;
     }
